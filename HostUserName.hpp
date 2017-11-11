@@ -10,7 +10,9 @@ class HostUserName : public IMonitorModule
 {
 public:
 	HostUserName();
+	HostUserName(HostUserName const &src);
 	~HostUserName();
+	HostUserName	&operator=(HostUserName const &src);
 	void			get_info(void);
 	class HostUserNameException : public std::exception
 	{

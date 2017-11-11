@@ -12,6 +12,23 @@ HostUserName::~HostUserName(void) {
 	return ;
 }
 
+HostUserName::HostUserName(HostUserName const & src)
+{
+	*this = src;
+	return ;
+}
+
+HostUserName	&HostUserName::operator=(HostUserName const &src)
+{
+	if (this != &src)
+	{
+		this->_hostname = src.getHostName();
+		this->_username = src.getUserName();
+	}
+	return (*this);
+}
+
+
 std::string		HostUserName::getHostName(void) const {
 	return (this->_hostname);
 }
