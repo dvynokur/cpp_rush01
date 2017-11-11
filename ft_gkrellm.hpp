@@ -25,7 +25,8 @@
 # include "IMonitorModule.hpp"
 # include "IMonitorDisplay.hpp"
 
-#	include "HostUserName.hpp"
+# include "HostUserName.hpp"
+# include "DateTimeModule.hpp"
 
 
 #endif
