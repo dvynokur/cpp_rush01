@@ -5,7 +5,9 @@
 # define CPUMODULE_HPP
 
 # include "ft_gkrellm.hpp"
-
+# include <cstdlib>
+# include <exception>
+# include <vector>
 class CPUModule : public IMonitorModule
 {
 public:
@@ -20,12 +22,21 @@ public:
 
 
 	// getters:
-
+    void    parseStreamTop();
 
 
 private:
-	int				_numCPU;
-
+	long			_numCPU;
+	std::string		_processes;
+	std::string		_time;
+	std::string		_loadAvrg;
+	std::string		_CPU_usage;
+	std::string		_sharedLibs;
+	std::string		_memRegions;
+	std::string		_physMem;
+	std::string		_VM;
+	std::string		_networks;
+	std::string		_disks;
 };
 
 #endif

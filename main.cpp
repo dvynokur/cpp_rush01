@@ -3,7 +3,6 @@
 
 #include "ft_gkrellm.hpp"
 #include "OS_Info.hpp"
-#include <cstdlib>
 // #include <intrin.h>
 #include <sys/resource.h>
 
@@ -123,32 +122,7 @@ int			main(void)
 
 
 
-	// std::cout << get_physical_memory() << std::endl;
-
-	struct rusage r_usage;
-
-	if (getrusage(RUSAGE_SELF, &r_usage)) {
-	    /* ... error handling ... */
-	}
-
-	printf("Total User CPU = %ld.%ld\n",
-	        r_usage.ru_utime.tv_sec,
-	        r_usage.ru_utime.tv_usec);
-	printf("Total System CPU = %ld.%ld\n",
-	        r_usage.ru_stime.tv_sec,
-	        r_usage.ru_stime.tv_usec);
-
-
-
-
-	if(!(in = popen("top -l 1 -n 0 -s 0", "r"))){
-		return 1;
-	}
-	while(fgets(buff, sizeof(buff), in)!=NULL){
-		std::cout << buff;
-	}
-	pclose(in);
-
 	OS_Info osInfo;
-	return (0);
+	CPUModule cpuModule;
+    return (0);
 }
