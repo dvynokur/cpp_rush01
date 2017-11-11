@@ -3,7 +3,6 @@
 
 #include "ft_gkrellm.hpp"
 #include "OS_Info.hpp"
-#include <cstdlib>
 // #include <intrin.h>
 #include <sys/resource.h>
 
@@ -86,7 +85,6 @@ int			main(void)
 	// HostUserName	hu;
 	// CPUModule		cm;
 
-	// std::cout << hu.getUserName() << std::endl;
 	int		init_status = init();
 	if (init_status == 0)
 		run();
@@ -106,5 +104,6 @@ int			main(void)
 	// pclose(in);
 
 	// OS_Info osInfo;
-	return (0);
+
+    return (0);
 }
