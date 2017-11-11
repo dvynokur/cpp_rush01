@@ -1,8 +1,8 @@
 CXX			= clang++
 # CXXFLAGS	= -Wall -Wextra -Werror
-FILES		= main.cpp HostUserName.cpp DateTimeModule
+FILES		= main.cpp HostUserName.cpp DateTimeModule OS_Info.cpp CPUModule.cpp
 NAME		= ft_gkrellm
-OFILES		= main.o HostUserName.o DateTimeModule.o
+OFILES		= main.o HostUserName.o DateTimeModule.o OS_Info.o CPUModule.o
 
 all: $(NAME)
 

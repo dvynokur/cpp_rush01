@@ -15,17 +15,30 @@ public:
 	CPUModule	&operator=(CPUModule const &src);
 	void			get_info(void);
 
+	class CPUModuleException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw() {
+			return ("CPUModule read error");
+		};
+	};
+
+	void			PModel(void);
+
 	// setters:
 
-
+	void			setModel(std::string s);
+	void			setNumCPU(int n);
 
 	// getters:
 
+	std::string		getModel(void) const;
+	int				getNumCPU(void) const;
 
 
 private:
 	int				_numCPU;
-
+	std::string		_model;
 };
 
 #endif
