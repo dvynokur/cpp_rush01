@@ -8,11 +8,12 @@
 
 CPUModule::CPUModule(void) {
 	this->get_info();
+	// std::cout << RED << this->getNumCPU() << RESET << std::endl;
 	return ;
 }
 
-CPUModule::~CPUModule() {
-
+CPUModule::~CPUModule(void) {
+	return ;
 }
 
 CPUModule::CPUModule(CPUModule const &src)
@@ -25,14 +26,62 @@ CPUModule::CPUModule(CPUModule const &src)
 CPUModule	&CPUModule::operator=(CPUModule const &src) {
 	if (this != &src)
 	{
-		this->_numCPU = sysconf(_SC_NPROCESSORS_ONLN);
+		this->_numCPU = src.getNumCPU();
+		this->_model = src.getModel();
 	}
 	return (*this);
 }
 
-void CPUModule::get_info() {
-    parseStreamTop_OneCircle();
+// setters:
 
+
+void			CPUModule::setModel(std::string s) {
+	this->_model = s;
+	return ;
+}
+
+void			CPUModule::setNumCPU(int n) {
+	this->_numCPU = n;
+	return ;
+}
+
+// getters:
+
+std::string		CPUModule::getModel(void) const {
+	return (this->_model);
+}
+
+int				CPUModule::getNumCPU(void) const {
+	return (this->_numCPU);
+}
+
+
+// other functions:
+
+void			CPUModule::PModel(void)
+{
+	FILE 			*in;
+	char 			buff[512];
+	std::string 	string_in("");
+	
+	try
+	{
+		if(!(in = popen("sysctl -n machdep.cpu.brand_string", "r")))
+			throw CPUModuleException();
+		fgets(buff, sizeof(buff), in);
+		this->setModel(buff);
+		pclose(in);
+	}
+	catch (std::exception & e) {
+		std::cout << RED << e.what() << RESET << std::endl;
+	}
+}
+
+
+void CPUModule::get_info() {
+    this->setNumCPU(sysconf(_SC_NPROCESSORS_ONLN));
+    this->PModel();
+    parseStreamTop_OneCircle();
 }
 
 void CPUModule::parseStreamTop_OneCircle() {
@@ -115,16 +164,3 @@ void CPUModule::parseRAM_usage() {
     std::cout << "_RAM_used " << _RAM_used << std::endl;
     std::cout << "_RAM_unused " << _RAM_unused << std::endl;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-

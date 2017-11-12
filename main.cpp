@@ -30,6 +30,8 @@ int 	init()
 	init_pair(1, COLOR_WHITE, COLOR_BLACK);
 	init_pair(2, COLOR_YELLOW, COLOR_BLACK);
 	init_pair(3, COLOR_RED, COLOR_BLACK);
+	init_pair(4, COLOR_GREEN, COLOR_BLACK);
+	init_pair(5, COLOR_BLUE, COLOR_BLACK);
 	wbkgd(wnd, COLOR_PAIR(1));
 	wattron(wnd, A_BOLD);
 	box(wnd, 0,0);
@@ -44,18 +46,17 @@ void		close(void)
 	exit(1);
 }
 
+void	basic_window(void)
+{
+	// pid_t		pid;
+	// if (pid = fork)
+	// 	process...
+}
+
 void	run()
 {
-//	HostUserName	hu;
-//	std::cout << "username: " << hu.getUserName() << std::endl;
-//	std::cout << "hostname: " << hu.getHostName() << std::endl;
-
-
-	FILE *in;
-	char buff[256];
 	HostUserName	hu;
 	DateTimeModule	dt;
-
 
 	int x;
 	int y;
@@ -63,13 +64,14 @@ void	run()
 	attron(COLOR_PAIR(2));
 
 	mvwprintw(wnd, 1, 2, "==================================================");
-	attrset(A_NORMAL);
+	// attrset(A_NORMAL);
 
 	mvwprintw(wnd, 2, 2, "username: %s", hu.getUserName().c_str());
-	mvwprintw(wnd, 3, 2, "hostname: %s", hu.getHostName().c_str());
+	// mvwprintw(wnd, 3, 2, "hostname: %s", hu.getHostName().c_str());
 
 	int n_char = wgetch(wnd);
-	while(n_char != '\n'){
+	while(n_char != '\n')
+	{
 		n_char = wgetch(wnd);
 		if (n_char == 27)
 			close();
@@ -77,52 +79,31 @@ void	run()
 }
 
 
-// double get_wall_time()
-// {
-//     struct timeval time;
-//     if (gettimeofday(&time,NULL)){
-//         //  Handle error
-//         return 0;
-//     }
-//     return (double)time.tv_sec + (double)time.tv_usec * .000001;
-// }
-
-double get_cpu_time()
-{
-   	return (double)clock() / CLOCKS_PER_SEC;
-}
-
-int64_t		get_physical_memory(void)
-{
-	int mib[2];
-    int64_t physical_memory;
-    size_t length;
-
-    // Get the Physical memory size
-    mib[0] = CTL_HW;
-    mib[1] = HW_MEMSIZE;
-    length = sizeof(int64_t);
-    sysctl(mib, 2, &physical_memory, &length, NULL, 0);
-    return (physical_memory);
-
-}
 
 int			main(void)
 {
-	HostUserName hu;
+	// HostUserName	hu;
+	// CPUModule		cm;
 
-	std::cout << hu.getUserName() << std::endl;
-	// int		init_status = init();
-	// if (init_status == 0)
-	// 	run();
+	int		init_status = init();
+	if (init_status == 0)
+		run();
 
-	// close();
-
-	std::cout << get_cpu_time() << std::endl;
+	close();
 
 
+	// FILE * in;
+	// char buff[256];
 
-	OS_Info osInfo;
-	CPUModule cpuModule;
+	// if(!(in = popen("top -l 1 -n 0 -s 0", "r"))){
+	// 	return 1;
+	// }
+	// while(fgets(buff, sizeof(buff), in)!=NULL){
+	// 	std::cout << buff;
+	// }
+	// pclose(in);
+
+	// OS_Info osInfo;
+
     return (0);
 }

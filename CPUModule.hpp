@@ -17,20 +17,35 @@ public:
 	CPUModule	&operator=(CPUModule const &src);
 	void			get_info();
 
+	class CPUModuleException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw() {
+			return ("CPUModule read error");
+		};
+	};
+
+	void			PModel(void);
+
 	// setters:
 
-
+	void			setModel(std::string s);
+	void			setNumCPU(int n);
 
 	// getters:
 
 
 
-private:
+	std::string		getModel(void) const;
+	int				getNumCPU(void) const;
 
+
+private:
     void            parseStreamTop_OneCircle();
     void            parseCPU_usage();
     void            parseRAM_usage();
-    bool            _tuner;
+
+	std::string		_model;
 	std::string		_processes;
 	std::string		_time;
 	std::string		_CPU_usage;
