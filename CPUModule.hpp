@@ -15,28 +15,33 @@ public:
 	~CPUModule();
 	CPUModule(CPUModule const &src);
 	CPUModule	&operator=(CPUModule const &src);
-	void			get_info(void);
+	void			get_info();
 
 	// setters:
 
 
 
 	// getters:
-    void    parseStreamTop();
+
 
 
 private:
-	long			_numCPU;
+
+    void            parseStreamTop_OneCircle();
+    void            parseCPU_usage();
+    void            parseRAM_usage();
+    bool            _tuner;
 	std::string		_processes;
 	std::string		_time;
-	std::string		_loadAvrg;
 	std::string		_CPU_usage;
-	std::string		_sharedLibs;
-	std::string		_memRegions;
-	std::string		_physMem;
-	std::string		_VM;
+    double          _CPU_user_usage;
+    double          _CPU_sys_usage;
+	std::string		_RAM;
+    int             _RAM_used;
+    int             _RAM_unused;
 	std::string		_networks;
-	std::string		_disks;
+
+    long            _numCPU;
 };
 
 #endif
