@@ -19,16 +19,24 @@
 # define MAX_NAME 100
 
 
+
 # include <iostream>
 # include <unistd.h>
 # include <limits.h>
 # include <ncurses.h>
 
 # include "IMonitorModule.hpp"
-# include "IMonitorDisplay.hpp"
 
 # include "HostUserName.hpp"
 # include "DateTimeModule.hpp"
 # include "CPUModule.hpp"
+# include "OS_Info.hpp"
+
+
+# include "IMonitorDisplay.hpp"
+
+# include "DisplayHostUserName.hpp"
+# include "DisplayOSInfo.hpp"
+# include "DisplayDateTime.hpp"
 
 #endif

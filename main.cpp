@@ -55,36 +55,73 @@ void	basic_window(void)
 
 void	run()
 {
-	HostUserName	hu;
-	DateTimeModule	dt;
+	int		tick;
+	bool	exit_requested = false;
+	int		in_char;
 
-	int x;
-	int y;
-	getmaxyx(wnd, y, x);
-	attron(COLOR_PAIR(2));
+	DisplayHostUserName		d_hu;
+	DisplayOSInfo			d_os;
+	DisplayDateTime			d_dt;
 
-	mvwprintw(wnd, 1, 2, "==================================================");
-	// attrset(A_NORMAL);
+	// d_os.display_empty(wnd);
 
-	mvwprintw(wnd, 2, 2, "username: %s", hu.getUserName().c_str());
-	// mvwprintw(wnd, 3, 2, "hostname: %s", hu.getHostName().c_str());
+	// d_hu.switch_mode(wnd);
 
-	int n_char = wgetch(wnd);
-	while(n_char != '\n')
+	// clear();
+	while(1)
 	{
-		n_char = wgetch(wnd);
-		if (n_char == 27)
-			close();
+		clear();
+
+		in_char = wgetch(wnd);
+		switch(in_char)
+		{
+			case 27:
+				exit_requested = true;
+				break ;
+			case '1':
+				if (d_hu.get_empty() == 0)
+					d_hu.set_empty(1);
+				else
+					d_hu.set_empty(0);
+				d_hu.display_empty(wnd);
+				break ;
+			case '2':
+				if (d_os.get_empty() == 0)
+					d_os.set_empty(1);
+				else
+					d_os.set_empty(0);
+				break ;
+			case '3':
+				if (d_dt.get_empty() == 0)
+					d_dt.set_empty(1);
+				else
+					d_dt.set_empty(0);
+			default:
+				break;
+		}
+		d_hu.switch_mode(wnd);
+		d_os.switch_mode(wnd);
+		d_dt.switch_mode(wnd);
+		// clear();
+		refresh();
+		if (exit_requested)
+			break;
+		usleep(40000);
 	}
+
+	// int n_char = wgetch(wnd);
+	// while(n_char != '\n')
+	// {
+	// 	n_char = wgetch(wnd);
+	// 	if (n_char == 27)
+	// 		close();
+	// }
 }
 
 
 
 int			main(void)
 {
-	// HostUserName	hu;
-	// CPUModule		cm;
-
 	int		init_status = init();
 	if (init_status == 0)
 		run();

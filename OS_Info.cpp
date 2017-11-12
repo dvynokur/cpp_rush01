@@ -84,7 +84,7 @@ void			OS_Info::get_info()
         iFirst += 8;
         myPair.second = line.substr(iFirst, iSecond - iFirst);
         v.push_back(myPair);
-        std::cout << myPair.first << " " <<  myPair.second << std::endl;
+        // std::cout << myPair.first << " " <<  myPair.second << std::endl;
     }
 
     _buildVersion = v.at(0).second;
