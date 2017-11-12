@@ -4,7 +4,11 @@
 #include "OS_Info.hpp"
 
 OS_Info::OS_Info() {
-    this->get_info();
+    _flag = true;
+    _productName = "0";
+    _productVersion = "0";
+    _buildVersion = "0";
+    _productCopyright = "0";
 }
 
 OS_Info::~OS_Info() {
@@ -26,6 +30,10 @@ std::string OS_Info::getproductCopyright() const {
     return _productCopyright;
 }
 
+bool        OS_Info::getFlag() const {
+    return _flag;
+}
+
 void OS_Info::setProductName(std::string ProdName) {
     _productName = ProdName;
 }
@@ -42,7 +50,7 @@ void OS_Info::setProductCopyright(std::string ProdCopiright) {
     _productCopyright = ProdCopiright;
 }
 
-void			OS_Info::get_info()
+void			OS_Info::get_info(Parser_CPU_RAM_Time_Net const &info)
 {
     std::string     line;
     std::string     buf;
@@ -91,4 +99,5 @@ void			OS_Info::get_info()
     _productCopyright = v.at(1).second;
     _productName = v.at(2).second;
     _productVersion = v.at(3).second;
+    _flag = info.getFlag();
 }

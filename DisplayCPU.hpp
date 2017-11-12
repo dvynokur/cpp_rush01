@@ -1,30 +1,31 @@
 //		Created by Denys Vynokurov and Roman Malkevych
 //					Rush01, Piscine CPP
 
-#ifndef DISPLAYOSINFO_HPP
-# define DISPLAYOSINFO_HPP
+#ifndef DISPLAYCPU_HPP
+# define DISPLAYCPU_HPP
 
 # include "ft_gkrellm.hpp"
-# include "IMonitorDisplay.hpp"
 
-
-class DisplayOSInfo : public IMonitorDisplay
+class DisplayCPU : public IMonitorDisplay
 {
 public:
-	DisplayOSInfo(Parser_CPU_RAM_Time_Net *pars);
-	~DisplayOSInfo();
-	DisplayOSInfo(DisplayOSInfo const & src);
-	DisplayOSInfo	&operator=(DisplayOSInfo const & src);
+	DisplayCPU(Parser_CPU_RAM_Time_Net *pars);
+	~DisplayCPU();
+	DisplayCPU(DisplayCPU const & src);
+	DisplayCPU		&operator=(DisplayCPU const & src);
+
 	void			display_info(WINDOW *wnd);
 	void			display_empty(WINDOW *wnd);
 	void			switch_mode(WINDOW *wnd);
 
 	void			set_empty(int n);
 	int				get_empty(void) const;
+
 private:
+	DisplayCPU();
 	int						_empty;
 	Parser_CPU_RAM_Time_Net	*_pars;
-	DisplayOSInfo();
+	
 };
 
 #endif

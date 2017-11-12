@@ -5,11 +5,13 @@
 # define DISPLAYDATETIME_HPP
 
 # include "ft_gkrellm.hpp"
+# include "IMonitorDisplay.hpp"
+
 
 class DisplayDateTime : public IMonitorDisplay
 {
 public:
-	DisplayDateTime();
+	DisplayDateTime(Parser_CPU_RAM_Time_Net *pars);
 	~DisplayDateTime();
 	DisplayDateTime(DisplayDateTime const &src);
 	DisplayDateTime		&operator=(DisplayDateTime const &src);
@@ -21,8 +23,9 @@ public:
 	void				set_empty(int n);
 	int					get_empty(void) const;
 private:
-	int					_empty;
-	
+	DisplayDateTime();
+	int						_empty;
+	Parser_CPU_RAM_Time_Net	*_pars;
 };
 
 #endif

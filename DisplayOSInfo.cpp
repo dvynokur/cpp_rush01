@@ -8,6 +8,12 @@ DisplayOSInfo::DisplayOSInfo(void) {
 	return ;
 }
 
+DisplayOSInfo::DisplayOSInfo(Parser_CPU_RAM_Time_Net *pars) {
+	_empty = 0;
+	_pars = pars;
+	return ;
+}
+
 DisplayOSInfo::~DisplayOSInfo(void) {
 	return ;
 }
@@ -29,11 +35,11 @@ void			DisplayOSInfo::display_info(WINDOW *wnd)
 {
 	OS_Info		os;
 
+	os.get_info(*this->_pars);
 	int x;
 	int y;
 	int line = 6;
 	getmaxyx(wnd, y, x);
-	// clear();
 	attron(COLOR_PAIR(2));
 
 	for (int i = 2; i < x - 2; i++) { mvwprintw(wnd, 5, i, "="); }

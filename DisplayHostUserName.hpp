@@ -5,11 +5,13 @@
 # define DISPLAYHOSTUSERNAME_HPP
 
 # include "ft_gkrellm.hpp"
+# include "IMonitorDisplay.hpp"
+
 
 class DisplayHostUserName : public IMonitorDisplay
 {
 public:
-	DisplayHostUserName();
+	DisplayHostUserName(Parser_CPU_RAM_Time_Net *pars);
 	~DisplayHostUserName();
 	DisplayHostUserName(DisplayHostUserName const &src);
 	DisplayHostUserName	&operator=(DisplayHostUserName const & src);
@@ -20,7 +22,10 @@ public:
 	void			set_empty(int n);
 
 private:
-	int				_empty;
+	int							_empty;
+	Parser_CPU_RAM_Time_Net		*_pars;
+	DisplayHostUserName();
+
 };
 
 #endif

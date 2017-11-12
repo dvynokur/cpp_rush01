@@ -9,6 +9,12 @@ DisplayDateTime::DisplayDateTime(void) {
 	return ;
 }
 
+DisplayDateTime::DisplayDateTime(Parser_CPU_RAM_Time_Net *pars) {
+	_empty = 0;
+	_pars = pars;
+}
+
+
 DisplayDateTime::~DisplayDateTime(void) {
 	return ;
 }
@@ -33,6 +39,7 @@ void				DisplayDateTime::display_info(WINDOW *wnd)
 	int				y;
 	int				line = 11;
 
+	dt.get_info(*this->_pars);
 	getmaxyx(wnd, y, x);
 	attron(COLOR_PAIR(2));
 	for (int i = 2; i < x - 2; i++)
@@ -49,9 +56,9 @@ void				DisplayDateTime::display_info(WINDOW *wnd)
 	attron(A_BOLD);
 	mvwprintw(wnd, ++line, 2, "\tTime: ");
 	attron(COLOR_PAIR(4));
-	mvwprintw(wnd, line, 30, "%d", dt.getHour());
-	mvwprintw(wnd, line, 33, ": %d", dt.getMinutes());
-	mvwprintw(wnd, line, 38, ": %d", dt.getSeconds());
+	mvwprintw(wnd, line, 30, "%s", dt.getTime().c_str());
+	// mvwprintw(wnd, line, 33, ": %d", dt.getMinutes());
+	// mvwprintw(wnd, line, 38, ": %d", dt.getSeconds());
 	attrset(A_NORMAL);
 	attron(COLOR_PAIR(2));
 	for (int i = 2; i < x - 2; i++) { mvwprintw(wnd, 14, i, "="); }

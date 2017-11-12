@@ -8,6 +8,13 @@ DisplayHostUserName::DisplayHostUserName(void) {
 	return ;
 }
 
+DisplayHostUserName::DisplayHostUserName(Parser_CPU_RAM_Time_Net *pars) {
+	_empty = 0;
+	_pars = pars;
+	return ;
+}
+
+
 DisplayHostUserName::~DisplayHostUserName(void) {
 	return ;
 }
@@ -32,10 +39,10 @@ void			DisplayHostUserName::display_info(WINDOW *wnd)
 	int x;
 	int y;
 	int line = 1;
-	getmaxyx(wnd, y, x);
-	// clear();
-	attron(COLOR_PAIR(2));
 
+	hu.get_info(*this->_pars);
+	getmaxyx(wnd, y, x);
+	attron(COLOR_PAIR(2));
 	for (int i = 2; i < x - 2; i++) { mvwprintw(wnd, line, i, "="); }
 	attrset(A_NORMAL);
 	attron(A_BOLD);

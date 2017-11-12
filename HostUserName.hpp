@@ -13,7 +13,7 @@ public:
 	HostUserName(HostUserName const &src);
 	~HostUserName();
 	HostUserName	&operator=(HostUserName const &src);
-	void			get_info(void);
+	void			get_info(Parser_CPU_RAM_Time_Net const &info);
 	class HostUserNameException : public std::exception
 	{
 	public:
@@ -31,6 +31,7 @@ public:
 private:
 	std::string		_hostname;
 	std::string		_username;
+	bool 			_flag;
 };
 
 #endif

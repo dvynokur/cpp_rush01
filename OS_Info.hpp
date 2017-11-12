@@ -15,7 +15,7 @@ class OS_Info : public IMonitorModule
 public:
     OS_Info();
     ~OS_Info();
-    void			get_info();
+    void			get_info(Parser_CPU_RAM_Time_Net const &info);
     class OS_InfoException : public std::exception
     {
     public:
@@ -33,12 +33,14 @@ public:
     void			setProductVersion(std::string ProdVer);
     void    		setBuildVersion(std::string buildVer);
     void            setProductCopyright(std::string ProdCopiright);
+    bool            getFlag() const;
 
 private:
     std::string		_productName;
     std::string     _productVersion;
     std::string     _buildVersion;
     std::string     _productCopyright;
+    bool            _flag;
 };
 
 #endif

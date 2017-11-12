@@ -22,21 +22,23 @@
 
 # include <iostream>
 # include <unistd.h>
-# include <limits.h>
+# include <climits>
 # include <ncurses.h>
-
 # include "IMonitorModule.hpp"
-
-# include "HostUserName.hpp"
-# include "DateTimeModule.hpp"
-# include "CPUModule.hpp"
-# include "OS_Info.hpp"
-
-
-# include "IMonitorDisplay.hpp"
 
 # include "DisplayHostUserName.hpp"
 # include "DisplayOSInfo.hpp"
 # include "DisplayDateTime.hpp"
+# include "DisplayCPU.hpp"
+# include "DisplayRAM.hpp"
+# include "DisplayNetwork.hpp"
+# include "IMonitorDisplay.hpp"
+# include "Parser_CPU_RAM_Time_Net.hpp"
+# include "HostUserName.hpp"
+# include "DateTimeModule.hpp"
+# include "CPUModule.hpp"
+# include "NetworkModule.hpp"
+# include "RAM_Module.hpp"
+# include "OS_Info.hpp"
 
 #endif

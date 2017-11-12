@@ -2,20 +2,11 @@
 //					Rush01, Piscine CPP
 
 #include "ft_gkrellm.hpp"
-#include "OS_Info.hpp"
-// #include <intrin.h>
-#include <sys/resource.h>
-
-
-#include <sys/types.h>
-#include <sys/sysctl.h>
 
 WINDOW*		wnd;
 
-
 int 	init()
 {
-	// srand(time(0));
 	wnd = initscr();
 	cbreak();
 	noecho();
@@ -46,32 +37,23 @@ void		close(void)
 	exit(1);
 }
 
-void	basic_window(void)
-{
-	// pid_t		pid;
-	// if (pid = fork)
-	// 	process...
-}
-
 void	run()
 {
-	int		tick;
 	bool	exit_requested = false;
 	int		in_char;
+	pid_t	pid;
 
-	DisplayHostUserName		d_hu;
-	DisplayOSInfo			d_os;
-	DisplayDateTime			d_dt;
+	Parser_CPU_RAM_Time_Net *pars = new Parser_CPU_RAM_Time_Net;
 
-	// d_os.display_empty(wnd);
+	DisplayHostUserName		d_hu(pars);
+	DisplayOSInfo			d_os(pars);
+	DisplayDateTime			d_dt(pars);
+	DisplayCPU				d_cpu(pars);
+	DisplayRAM				d_ram(pars);
+	DisplayNetwork			d_net(pars);
 
-	// d_hu.switch_mode(wnd);
-
-	// clear();
 	while(1)
 	{
-		clear();
-
 		in_char = wgetch(wnd);
 		switch(in_char)
 		{
@@ -96,51 +78,50 @@ void	run()
 					d_dt.set_empty(1);
 				else
 					d_dt.set_empty(0);
+				break;
+			case '4':
+				if (d_cpu.get_empty() == 0)
+					d_cpu.set_empty(1);
+				else
+					d_cpu.set_empty(0);
+				break;
+			case '5':
+				if (d_ram.get_empty() == 0)
+					d_ram.set_empty(1);
+				else
+					d_ram.set_empty(0);
+				break;
+			case '6':
+				if (d_net.get_empty() == 0)
+					d_net.set_empty(1);
+				else
+					d_net.set_empty(0);
+				break;
 			default:
 				break;
 		}
+		clear();
+		pars->get_info();
 		d_hu.switch_mode(wnd);
 		d_os.switch_mode(wnd);
 		d_dt.switch_mode(wnd);
-		// clear();
+		d_cpu.switch_mode(wnd);
+		d_ram.switch_mode(wnd);
+		d_net.switch_mode(wnd);
 		refresh();
 		if (exit_requested)
 			break;
-		usleep(40000);
+		usleep(200000);
 	}
-
-	// int n_char = wgetch(wnd);
-	// while(n_char != '\n')
-	// {
-	// 	n_char = wgetch(wnd);
-	// 	if (n_char == 27)
-	// 		close();
-	// }
 }
 
-
-
-int			main(void)
+int			main(int ac, char **av)
 {
 	int		init_status = init();
 	if (init_status == 0)
 		run();
 
 	close();
-
-
-	// FILE * in;
-	// char buff[256];
-
-	// if(!(in = popen("top -l 1 -n 0 -s 0", "r"))){
-	// 	return 1;
-	// }
-	// while(fgets(buff, sizeof(buff), in)!=NULL){
-	// 	std::cout << buff;
-	// }
-	// pclose(in);
-
-	// OS_Info osInfo;
 
     return (0);
 }
