@@ -6,7 +6,13 @@
 // Constructors and destructor
 
 DateTimeModule::DateTimeModule(void) {
-	this->get_info();
+	_time = "0";
+	_seconds = 0;
+	_minutes = 0;
+	_hour = 0;
+	_day = 0;
+	_month = 0;
+	_year = 0;
 	return ;
 }
 
@@ -86,10 +92,13 @@ int				DateTimeModule::getSeconds(void) const {
 	return (this->_seconds);
 }
 
+std::string const& DateTimeModule::getTime() const {
+	return _time;
+}
 
 // functions:
 
-void			DateTimeModule::get_info(void)
+void			DateTimeModule::get_info(Parser_CPU_RAM_Time_Net const &info)
 {
 	time_t t = time(0);
 	struct tm * now = localtime( & t );
@@ -101,5 +110,5 @@ void			DateTimeModule::get_info(void)
 	this->setHour(now->tm_hour);
 	this->setMinutes(now->tm_min);
 	this->setSeconds(now->tm_sec);
-
+	_time = info.getTime();
 }

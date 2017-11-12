@@ -4,7 +4,6 @@
 #include "HostUserName.hpp"
 
 HostUserName::HostUserName(void) {
-	this->get_info();
 	return ;
 }
 
@@ -45,7 +44,7 @@ void			HostUserName::setUserName(std::string un) {
 	return ;
 }
 
-void			HostUserName::get_info(void)
+void			HostUserName::get_info(Parser_CPU_RAM_Time_Net const &info)
 {
 	char hostname[MAX_NAME];
 	char username[MAX_NAME];
@@ -70,4 +69,5 @@ void			HostUserName::get_info(void)
 	catch (std::exception & e) {
 		std::cout << RED << e.what() << RESET << std::endl;
 	}
+	_flag = info.getFlag();
 }

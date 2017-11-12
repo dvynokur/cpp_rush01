@@ -13,7 +13,7 @@ public:
 	~DateTimeModule();
 	DateTimeModule(DateTimeModule const &src);
 	DateTimeModule	&operator=(DateTimeModule const &src);
-	void			get_info(void);
+	void			get_info(Parser_CPU_RAM_Time_Net const &info);
 	class DateTimeException : public std::exception
 	{
 	public:
@@ -33,12 +33,13 @@ public:
 
 	// getters:
 
-	int				getYear(void) const;
-	int				getMonth(void) const;
-	int				getDay(void) const;
-	int				getHour(void) const;
-	int				getMinutes(void) const;
-	int				getSeconds(void) const;
+	int					getYear(void) const;
+	int					getMonth(void) const;
+	int					getDay(void) const;
+	int					getHour(void) const;
+	int					getMinutes(void) const;
+	int					getSeconds(void) const;
+	std::string const 	&getTime() const;
 
 private:
 	int				_year;
@@ -48,6 +49,7 @@ private:
 	int				_hour;
 	int				_minutes;
 	int				_seconds;
+	std::string		_time;
 };
 
 #endif
