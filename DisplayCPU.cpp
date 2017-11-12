@@ -3,31 +3,10 @@
 
 #include "ft_gkrellm.hpp"
 
-DisplayCPU::DisplayCPU(void) {
-	_empty = 0;
-	return ;
-}
-
 DisplayCPU::DisplayCPU(Parser_CPU_RAM_Time_Net *pars) {
 	_empty = 0;
 	_pars = pars;
 	return ;
-}
-
-DisplayCPU::~DisplayCPU(void) {
-	return ;
-}
-
-DisplayCPU::DisplayCPU(DisplayCPU const & src) {
-	*this = src;
-	return ;
-}
-
-DisplayCPU		&DisplayCPU::operator=(DisplayCPU const & src)
-{
-	if (this != &src)
-		*this = src;
-	return (*this);
 }
 
 void			DisplayCPU::display_info(WINDOW *wnd)
@@ -75,7 +54,6 @@ void			DisplayCPU::display_empty(WINDOW *wnd)
 	int x;
 	int y;
 	getmaxyx(wnd, y, x);
-	// clear();
 	attron(COLOR_PAIR(2));
 	for (int i = 2; i < x - 2; i++) { mvwprintw(wnd, 15, i, "="); }
 
@@ -98,13 +76,4 @@ void			DisplayCPU::switch_mode(WINDOW *wnd)
 		this->display_info(wnd);
 	else
 		this->display_empty(wnd);
-}
-
-void			DisplayCPU::set_empty(int n) {
-	this->_empty = n;
-	return ;
-}
-
-int				DisplayCPU::get_empty(void) const {
-	return (this->_empty);
 }

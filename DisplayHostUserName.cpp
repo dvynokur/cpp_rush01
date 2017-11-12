@@ -3,33 +3,10 @@
 
 #include "ft_gkrellm.hpp"
 
-DisplayHostUserName::DisplayHostUserName(void) {
-	_empty = 0;
-	return ;
-}
-
 DisplayHostUserName::DisplayHostUserName(Parser_CPU_RAM_Time_Net *pars) {
 	_empty = 0;
 	_pars = pars;
 	return ;
-}
-
-
-DisplayHostUserName::~DisplayHostUserName(void) {
-	return ;
-}
-
-DisplayHostUserName::DisplayHostUserName(DisplayHostUserName const &src)
-{
-	*this = src;
-	return ;
-}
-
-DisplayHostUserName	&DisplayHostUserName::operator=(DisplayHostUserName const & src)
-{
-	if (this != &src)
-		*this = src;
-	return (*this);
 }
 
 void			DisplayHostUserName::display_info(WINDOW *wnd)
@@ -66,7 +43,6 @@ void			DisplayHostUserName::display_empty(WINDOW *wnd)
 	int x;
 	int y;
 	getmaxyx(wnd, y, x);
-	// clear();
 	attron(COLOR_PAIR(2));
 	for (int i = 2; i < x - 2; i++) { mvwprintw(wnd, 1, i, "="); }
 
@@ -89,13 +65,4 @@ void			DisplayHostUserName::switch_mode(WINDOW *wnd)
 		this->display_info(wnd);
 	else
 		this->display_empty(wnd);
-}
-
-void			DisplayHostUserName::set_empty(int n) {
-	this->_empty = n;
-	return ;
-}
-
-int				DisplayHostUserName::get_empty(void) const {
-	return (this->_empty);
 }

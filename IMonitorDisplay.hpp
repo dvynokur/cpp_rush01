@@ -9,9 +9,9 @@
 class IMonitorDisplay
 {
 public:
-	virtual void	display_info(WINDOW *wnd) = 0;
-	virtual void	display_empty(WINDOW *wnd) = 0;
-	virtual void	switch_mode(WINDOW *wnd) = 0;
+	virtual int		init(void) = 0;
+	virtual void	run(void) = 0;
+	virtual void	close(void) = 0;
 };
 
 #endif

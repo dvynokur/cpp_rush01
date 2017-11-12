@@ -25,7 +25,7 @@
 # include <climits>
 # include <ncurses.h>
 # include "IMonitorModule.hpp"
-
+# include "Display.hpp"
 # include "DisplayHostUserName.hpp"
 # include "DisplayOSInfo.hpp"
 # include "DisplayDateTime.hpp"

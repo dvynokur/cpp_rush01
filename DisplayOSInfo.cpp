@@ -3,32 +3,10 @@
 
 #include "ft_gkrellm.hpp"
 
-DisplayOSInfo::DisplayOSInfo(void) {
-	_empty = 0;
-	return ;
-}
-
 DisplayOSInfo::DisplayOSInfo(Parser_CPU_RAM_Time_Net *pars) {
 	_empty = 0;
 	_pars = pars;
 	return ;
-}
-
-DisplayOSInfo::~DisplayOSInfo(void) {
-	return ;
-}
-
-DisplayOSInfo::DisplayOSInfo(DisplayOSInfo const &src)
-{
-	*this = src;
-	return ;
-}
-
-DisplayOSInfo	&DisplayOSInfo::operator=(DisplayOSInfo const &src)
-{
-	if (this != &src)
-		*this = src;
-	return (*this);
 }
 
 void			DisplayOSInfo::display_info(WINDOW *wnd)
@@ -97,13 +75,4 @@ void			DisplayOSInfo::switch_mode(WINDOW *wnd)
 		display_info(wnd);
 	else if (_empty == 1)
 		display_empty(wnd);
-}
-
-void			DisplayOSInfo::set_empty(int n) {
-	this->_empty = n;
-	return ;
-}
-
-int				DisplayOSInfo::get_empty(void) const {
-	return (this->_empty);
 }

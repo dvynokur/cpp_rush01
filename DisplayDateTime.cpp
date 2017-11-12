@@ -3,33 +3,9 @@
 
 #include "ft_gkrellm.hpp"
 
-
-DisplayDateTime::DisplayDateTime(void) {
-	_empty = 0;
-	return ;
-}
-
 DisplayDateTime::DisplayDateTime(Parser_CPU_RAM_Time_Net *pars) {
 	_empty = 0;
 	_pars = pars;
-}
-
-
-DisplayDateTime::~DisplayDateTime(void) {
-	return ;
-}
-
-DisplayDateTime::DisplayDateTime(DisplayDateTime const &src)
-{
-	*this = src;
-	return ;
-}
-
-DisplayDateTime		&DisplayDateTime::operator=(DisplayDateTime const &src)
-{
-	if (this != &src)
-		*this = src;
-	return (*this);
 }
 
 void				DisplayDateTime::display_info(WINDOW *wnd)
@@ -57,8 +33,6 @@ void				DisplayDateTime::display_info(WINDOW *wnd)
 	mvwprintw(wnd, ++line, 2, "\tTime: ");
 	attron(COLOR_PAIR(4));
 	mvwprintw(wnd, line, 30, "%s", dt.getTime().c_str());
-	// mvwprintw(wnd, line, 33, ": %d", dt.getMinutes());
-	// mvwprintw(wnd, line, 38, ": %d", dt.getSeconds());
 	attrset(A_NORMAL);
 	attron(COLOR_PAIR(2));
 	for (int i = 2; i < x - 2; i++) { mvwprintw(wnd, 14, i, "="); }
@@ -93,13 +67,4 @@ void				DisplayDateTime::switch_mode(WINDOW *wnd)
 		this->display_info(wnd);
 	else
 		this->display_empty(wnd);
-}
-
-void				DisplayDateTime::set_empty(int n) {
-	this->_empty = n;
-	return ;
-}
-
-int					DisplayDateTime::get_empty(void) const {
-	return (this->_empty);
 }
